@@ -61,28 +61,120 @@ int get_min(std::vector<int> nums) {
     return res;
 }
 
+// 2.5 扩展为排序题
+void my_sort(std::vector<int>& nums) {
+    // 冒泡排序
+    for (size_t i = 0; i < nums.size(); ++i) {
+        for (size_t j = 0; j < nums.size() - i - 1; ++j) {
+            if (nums[j+1] < nums[j]) {
+                my_swap(nums[j+1], nums[j]);
+            }
+        }
+    }
+}
 
+// 2.6 扩展为从[begin, end]所有位数之积为x
+std::vector<int> digits_product_is_x(const unsigned int begin, const unsigned int end, const unsigned int x) {
+    std::vector<int> res{};
+    if (begin == 0) { // 去掉边界情况
+        return res;
+    } 
+    for (unsigned int i = begin; i <= end; ++i) {
+        unsigned int tmp = i;
+        unsigned int item = 1;
+        while (tmp) {
+            item *= tmp % 10;
+            tmp /= 10;
+        }
+        if (item == x) {
+            res.push_back(i);
+        }
+    }
+    return res;
+}
 
+// 2.7 原题扩展为找[begin, end]的回文数，单个数字也算
+std::vector<int> digits_palindrome(const unsigned int begin, const unsigned int end) {
+    std::vector<int> res{};
+    // 既然是回文数，正着存和反着存就是一样的
+    for (unsigned int i = begin; i <= end; ++i) {
+        std::string num_string("");
+        unsigned int tmp = i;
+        bool flag = true;
+        while (tmp) {
+            num_string += tmp % 10;
+            tmp /= 10;
+        }
+        // 判断字符串是不是回文数
+        for (size_t i = 0; i < num_string.size() / 2; ++i) {
+            if (num_string[i] != num_string[num_string.size() - i - 1]) {
+                flag = false;
+            }
+        }
+        if (flag) {
+            res.push_back(i);
+        }
+    }
+    return res;
+}
 
+// 2.8 百钱百鸡
+std::vector<std::vector<unsigned int>> count_ikun() {
+    std::vector<std::vector<unsigned int>> res;
+    unsigned int total_money = 300;
+    unsigned int x_money = 15, y_money = 9;
+    // x + y + z = 100;
+    // x*5 + y*3 + z/3 = 100;
+    // 看似是三个变量，实则是三元一次方程，两个等式可以消去一个变量，因此循环两次即可
+    for (unsigned int x = 1; x <= 98; ++x) {
+        for (unsigned int y = 1; y <= 99 - x; ++y) {
+            unsigned int z = 100 - x - y;
+            if (x * x_money + y * y_money + z == total_money) {
+                res.push_back({x, y, z});
+            }
+        }
+    }
+    return res;
+}
 
+// 2.18
+void t_218() {
+    // (1)
+    int m = 1, n = 2;
+    int k = ++m; // k == m == 2
+    std::cout << "k:" << k << std::endl;
+    k = m + n++; // n == 3 k == 4
+    std::cout << "m:" << m
+              << "\tn:" << n
+              << "\tk:" << k << std::endl;
+    k = --n - m; //  n == 2 k == 0
+    std::cout << "m:" << m
+            << "\tn:" << n
+            << "\tk:" << k << std::endl;
+    k = (m >= n); // k == 1
+    std::cout << "k:" << k << std::endl;
 
+    // (2)
+    int a = 4, b = 3, c = 2, d = 1;
+    std::cout << "(a+b, b+c, c+d):" << (a+b, b+c, c+d) << std::endl; // 逗号从左往右运算
+    
+    // (3)
+    a = 1, b = 2, c = 0;
+    std::cout << "a++-1:" << a++-1 << std::endl; // a == 2, 结果是0
+    std::cout << "b/++a:" << b/++a << std::endl; // a == 3, 向下取整
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    // (4)
+    a = -5, b = 10; // int
+    float x = 1.75, y = 2.34e-03;
+    std::cout << "a+b:" << a+b << std::endl; // 5
+    a++; // a == -4
+    b--; // b == 9
+    std::cout << "a*b:" << a*b << std::endl; // -36
+    std::cout << "x+y:" << x+y << std::endl; // -1.75234
+}
 
 int main(int argc, char** argv) {
+    t_218();
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
