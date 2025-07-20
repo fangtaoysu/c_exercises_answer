@@ -1,7 +1,5 @@
 #include "exercises.h"
 #include <math.h>
-#include <iostream>
-
 
 // 4.5 扩展为参数输入，结果转为字符串返回
 std::string square_add(int a, int b) {
