@@ -6,7 +6,7 @@
 
 
 // 3.5 扩展为求矩形的长和宽
-std::pair<double, double> count_rectangle_perimeter_and_area(const double a, const double b) {
+std::pair<double, double> count_rectangle_perimeter_and_area(double a, double b) {
     std::pair<double, double> res;
     res.first = 2 * (a + b);
     res.second = a * b;
@@ -15,7 +15,7 @@ std::pair<double, double> count_rectangle_perimeter_and_area(const double a, con
 
 // 3.6
 #define PI 3.14
-std::pair<double, double> count_circle_perimeter_and_area(const double r) {
+std::pair<double, double> count_circle_perimeter_and_area(double r) {
     std::pair<double, double> res;
     res.first = 2 * PI * r;
     res.second = PI * r * r;
@@ -23,13 +23,13 @@ std::pair<double, double> count_circle_perimeter_and_area(const double r) {
 }
 
 // 3.7
-double count_triangle_area(const double a, const double b, const double c) {
+double count_triangle_area(double a, double b, double c) {
     double s = (a + b + c) / 2;
     return std::sqrt(s * (s - a) * (s - b) * (s - c));
 }
 
 // 3.8
-std::pair<unsigned int, unsigned int> rabbit_and_ikun(const unsigned int head, const unsigned int foot) {
+std::pair<unsigned int, unsigned int> rabbit_and_ikun(unsigned int head, unsigned int foot) {
     std::pair<unsigned int, unsigned int> res{0, 0};
     if (foot % 2 == 1) {
         return res;

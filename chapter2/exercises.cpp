@@ -74,7 +74,7 @@ void my_sort(std::vector<int>& nums) {
 }
 
 // 2.6 扩展为从[begin, end]所有位数之积为x
-std::vector<int> digits_product_is_x(const unsigned int begin, const unsigned int end, const unsigned int x) {
+std::vector<int> digits_product_is_x(unsigned int begin, unsigned int end, unsigned int x) {
     std::vector<int> res{};
     if (begin == 0) { // 去掉边界情况
         return res;
@@ -94,7 +94,7 @@ std::vector<int> digits_product_is_x(const unsigned int begin, const unsigned in
 }
 
 // 2.7 原题扩展为找[begin, end]的回文数，单个数字也算
-std::vector<int> digits_palindrome(const unsigned int begin, const unsigned int end) {
+std::vector<int> digits_palindrome(unsigned int begin, unsigned int end) {
     std::vector<int> res{};
     // 既然是回文数，正着存和反着存就是一样的
     for (unsigned int i = begin; i <= end; ++i) {
